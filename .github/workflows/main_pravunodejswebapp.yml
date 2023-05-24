@@ -25,13 +25,13 @@ jobs:
         run: |
           npm install
           npm run build --if-present
+          npm run test --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
           path: .
-
 
   deploy:
     runs-on: ubuntu-latest
@@ -46,13 +46,11 @@ jobs:
         with:
           name: node-app
 
-
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-
           app-name: 'pravunodejswebapp'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E5B37574B17E41CCB1D6992D2E184751 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_35E8A1386932485C931A06D0403CB9D5 }}
           package: .
