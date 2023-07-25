@@ -1,11 +1,25 @@
-var express = require('express');
+// Import the Node.js http module
+const http = require('http');
 
-var app = express();
+// req is the request object which is
+// coming from the client side
+// res is the response object which is going
+// to client as response from the server
 
-app.get('/', function (req, res) {
-  res.send('Simple Web Application is UP');
-});
+// Create a server object
+http.createServer(function (req, res) {
 
-app.listen(8081, function () {
-  console.log('Simple Web Application running on port 8081!');
-});
+	// 200 is the status code which means
+	// All OK and the second argument is
+	// the object of response header.
+	res.writeHead(200, { 'Content-Type': 'text/html' });
+
+	// Write a response to the client
+	res.write('Congrats you have a created a web server');
+
+	// End the response
+	res.end();
+
+}).listen(8081); // Server object listens on port 8081
+
+console.log('Node.js web server at port 8081 is running..')
